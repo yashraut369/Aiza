@@ -7,8 +7,9 @@ class AizaAssistant:
         self.commands = {
             "hello": self.greet,
             "bye": self.farewell,
-            # Add more commands here
             "what's your name": self.introduce,
+            "how are you": self.how_are_you,
+            "can you listen to me": self.listen_command,
         }
         self.recognizer = sr.Recognizer()
         self.engine = pyttsx3.init()
@@ -22,6 +23,12 @@ class AizaAssistant:
 
     def introduce(self):
         return "My name is Aiza, your AI Assistant."
+
+    def how_are_you(self):
+        return "I'm doing great, thank you! How can I assist you today?"
+
+    def listen_command(self):
+        return "Yes, I can listen to you. Please speak your command."
 
     def handle_command(self, command):
         """
@@ -45,6 +52,7 @@ class AizaAssistant:
     def listen(self):
         with sr.Microphone() as source:
             print("Listening...")
+            self.speak("Listening...")
             audio = self.recognizer.listen(source)
 
         try:
